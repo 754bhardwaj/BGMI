@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - GO Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+      body {
+          background-image: url('images/background.webp'); /* Background image */
+          background-size: cover; /* Cover the entire viewport */
+          background-position: center; /* Center the background image */
+          font-family: 'Roboto', sans-serif; /* Changed font to Roboto */
+          margin: 0;
+          padding: 0;
+          color: #333;
+          position: relative; /* Position relative for overlay */
+          overflow: hidden; /* Prevent scrolling issues */
+      }
+      .overlay {
+          position: absolute; /* Position overlay */
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 1; /* Place overlay above the background */
+      }
+      nav {
+          background-color: rgba(17, 44, 74, 0.9);
+          padding: 15px;
+          display: flex;
+          align-items: center;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          transition: background-color 0.3s;
+      }
+      nav:hover {
+          background-color: rgba(17, 44, 74, 1);
+      }
+      nav h1 {
+          color: #fff;
+          margin: 0;
+          font-size: 1.5em;
+          flex-grow: 1;
+          display: flex;
+          align-items: center;
+      }
+      nav img {
+          width: 40px;
+          height: 25px;
+          margin-right: 10px;
+      }
+      nav a {
+          color: #fff;
+          text-decoration: none;
+          margin-left: 20px;
+          font-weight: 500; /* Medium weight for links */
+          transition: color 0.3s;
+      }
+      nav a:hover {
+          color: #FFD700;
+      }
+      .hamburger {
+          display: none; /* Hidden by default */
+          font-size: 24px;
+          background: none;
+          border: none;
+          color: white;
+          cursor: pointer;
+          margin-left: auto; /* Align to the right */
+      }
+      .nav-links {
+          display: flex; /* Default display for larger screens */
+      }
+      .nav-links a {
+          display: block; /* Make links block elements for mobile */
+      }
+      .container {
+          max-width: 1200px;
+          margin: 2em auto;
+          padding: 2em;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 2em; /* Space between boxes */
+          position: relative; /* Position relative for stacking */
+          z-index: 2; /* Stack above overlay */
+      }
+      .section-box {
+          flex: 1 1 calc(30% - 2em);
+          border-radius: 10px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          padding: 1.5em;
+          transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .section-box:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      }
+      /* Background colors for each section */
+      .about-us { background-color: #e0f7fa; } /* Light cyan */
+      .our-mission { background-color: #ffe0b2; } /* Light orange */
+      .our-services { background-color: #d1c4e9; } /* Light purple */
+      .why-choose-us { background-color: #c8e6c9; } /* Light green */
+      .get-in-touch { background-color: #fff9c4; } /* Light yellow */
+      h2 {
+          color: #042e5b; /* Darker blue for main headings */
+          margin-bottom: 0.5em;
+          text-align: center;
+          font-weight: 700; /* Bold weight for headings */
+      }
+      h3 {
+          color: #007bff; /* Bright blue for subheadings */
+          margin-bottom: 0.5em;
+          font-weight: 500; /* Medium weight for subheadings */
+      }
+      p {
+          line-height: 1.6;
+          margin-bottom: 1em;
+          color: #666;
+      }
+      ul {
+          margin: 1em 0;
+          padding-left: 20px;
+      }
+      footer {
+          background-color: black;
+          color: white;
+          text-align: center;
+          padding: 1em 0;
+          position: relative;
+          bottom: 0;
+          width: 100%;
+      }
+      footer p {
+          margin: 0;
+          color: whitesmoke;
+      }
+      @media (max-width: 768px) {
+          .section-box {
+              flex: 1 1 calc(45% - 2em);
+          }
+          .nav-links {
+              display: none; /* Hide links by default on mobile */
+              flex-direction: column; /* Stack links vertically */
+              position: absolute; /* Position them absolutely */
+              top: 60px; /* Adjust based on your nav height */
+              left: 0;
+              right: 0;
+              background-color: rgba(17, 44, 74, 0.9); /* Match nav background */
+              z-index: 1000;
+          }
+          .nav-links.active {
+              display: flex; /* Show links when active */
+          }
+          .hamburger {
+              display: block; /* Show hamburger icon on mobile */
+          }
+      }
+      @media (max-width: 480px) {
+          .section-box {
+              flex: 1 1 100%;
+          }
+      }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div> <!-- Overlay for background transparency -->
+  <nav>
+      <h1><img src="images/logo1.webp" alt="Logo1"><a href="index.html">GO SERVICES</a></h1>
+      <div class="nav-links">
+          <a href="index.html">HOME</a>
+          <a href="#">ABOUT</a>
+          <a href="contact.html">CONTACT</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle navigation" onclick="toggleNav()">
+          &#9776; <!-- Hamburger icon -->
+      </button>
+  </nav>
+
+  <div class="container">
+      <div class="section-box about-us">
+          <h2>About Us</h2>
+          <p>Welcome to GO Services! We are dedicated to providing top-notch home and vehicle services tailored to your needs. Our team of skilled professionals is committed to delivering exceptional quality and customer satisfaction.</p>
+      </div>
+
+      <div class="section-box our-mission">
+          <h2>Our Mission</h2>
+          <p>At GO Services, our mission is to simplify your life by offering a variety of services that ensure your home and vehicle remain in optimal condition. We aim to provide convenience, reliability, and quality in every service we offer.</p>
+      </div>
+
+      <div class="section-box our-services">
+          <h2>Our Services</h2>
+          <p>We offer a range of services including:</p>
+          <ul>
+              <li>Air Conditioning Services</li>
+              <li>Washing Machine Repairs</li>
+              <li>Car Maintenance</li>
+              <li>Home Cleaning</li>
+              <li>Cooking Services</li>
+              <li>Bike Maintenance</li>
+          </ul>
+      </div>
+
+      <div class="section-box why-choose-us">
+          <h2>Why Choose Us?</h2>
+          <p>With years of experience in the industry, we pride ourselves on our professionalism and attention to detail. Our technicians are highly trained and equipped with the latest tools to ensure that your needs are met efficiently and effectively.</p>
+      </div>
+
+      <div class="section-box get-in-touch">
+          <h2>Get in Touch</h2>
+          <p>If you have any questions or would like to learn more about our services, feel free to reach out to us through our contact page. We look forward to serving you!</p>
+      </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 GO Services. All Rights Reserved to Rishab Dey.</p>
+  </footer>
+  <script>
+      function toggleNav() {
+          const navLinks = document.querySelector('.nav-links');
+          navLinks.classList.toggle('active'); // Toggle the active class
+      }
+
+      // Add event listener to nav links
+      const navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+              // Add active class to current link
+              navLinks.forEach(l => l.classList.remove('active'));
+              link.classList.add('active');
+          });
+      });
+  </script>
+</body>
+</html>

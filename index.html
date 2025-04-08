@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swarg Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);   
+        }
+        nav {
+            background-color:#01060c;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+            font-family: 'Roboto', sans-serif;
+        }
+        nav:hover {
+            background-color: rgba(17, 44, 74, 1);
+        }
+        nav h1 {
+            color: #fff;
+            margin: 0;
+            font-size: 1.5em;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        nav img {
+            width: 40px;
+            height: 25px;
+            margin-right: 10px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #FFD700;
+        }
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-left: auto;
+        }
+        .nav-links {
+            display: flex;
+        }
+        .nav-links a {
+            display: block;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .slide {
+            display: none;
+            width: 100%;
+            height: 500px;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.5s ease;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 3px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .next {
+            right: 0;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 2em;
+        }
+        main h2 {
+            text-align: center; width: 100%; color:#01060c;
+        }
+        .product {
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            border-radius: 10px;
+            margin: 1em;
+            padding: 1.5em;
+            width: 300px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;  
+        }
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(145deg, #e6e6e6, #ffffff);
+        }
+        .product img {
+            width: 80%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1em;
+            transition: transform 0.3s;
+        }
+        .product img:hover {
+            transform: scale(1.1);
+        }
+        .product h2 {
+            margin: 0.5em 0;
+            font-weight: bold;
+            color: #4A90E2;
+        }
+        .product p {
+            font-size: 14px;
+            color: #666;
+            padding: 0 1em;
+            margin-bottom: 1em;
+        }
+        button {
+            cursor: pointer;
+            background-color: #4A90E2;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+        button:hover {
+            background-color: #357ABD;
+            transform: translateY(-2px);
+        }
+        .reviews-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            padding: 2em;
+            text-align: center;
+            background-color: #f6e1e1;
+        }
+        .reviews-header {
+            width: 100%;
+            margin-bottom: 1em;
+            color: #01060c;
+        }
+        .review {
+            background-color: #0e396a;
+            border-radius: 10px;
+            margin: 1em;
+            padding: 1.5em;
+            width: 300px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            text-align: center;
+        }
+        .review:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+        .review p{
+            color: #fff;
+            font-size: 1.8em;
+            margin: 0;
+        }
+        .review img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 0.5em;
+            border: 2px solid #4A90E2;
+        }
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer p {
+            margin: 0;
+            color: whitesmoke;
+        }
+        hr {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, #4A90E2, #e6e6e6, #4A90E2);
+            margin: 2em 0;
+        }
+        @media (max-width: 768px) {
+            .product, .review {
+                width: 90%;
+            }
+            nav h1 {
+                font-size: 1.5em;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: rgba(17, 44, 74, 0.9);
+                z-index: 1000;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+        @media (max-width: 480px) {
+            nav h1 {
+                font-size: 1.2em;
+            }
+            .product {
+                padding: 1em;
+            }
+            .product img {
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1><img src="./logo.png" alt="Logo1"><a href="index.html">SWARG STORE</a></h1>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="#services">SERVICES</a>
+            <a href="#reviews">REVIEWS</a>
+            <a href="contact.html">CONTACT</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle navigation" onclick="toggleNav()">
+            &#9776; <!-- Hamburger icon -->
+        </button>
+    </nav>
+
+    <!-- Slideshow Section -->
+    <div class="slideshow-container">
+        <div class="slide">
+            <img src="./Bgmi2.jpg" alt="Logo">
+        </div>
+        <div class="slide">
+            <img src="./bgmi.jpg" alt="Service Image 1">
+        </div>
+        <div class="slide">
+            <img src="./bgmi1.jpg" alt="Service Image 2">
+        </div>
+        <div class="slide">
+            <img src="./Valorant.jpg" alt="Service Image 3">
+        </div>
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+
+    <main id="services">
+        <h2>BGMI DIFFERENT ACCOUNTS</h2>
+        <div class="product">
+            <img src="./car.jpg" alt="vip services" loading="lazy">
+            <h2>BGMI VIP IDS</h2>
+            <p>BEST IDS AVAILABLE RANGE BETWEEN 100K-300K.</p>
+            <button aria-label="Book BGMI ids" onclick="bookService('Ids range btw 100k-330k')">Book Now</button>
+        </div>
+        <div class="product">
+            <img src="./premium.webp" alt="premium services" loading="lazy">
+            <h2>BGMI PREMIUM IDS</h2>
+            <p>BEST IDS AVAILABLE RANGE BETWEEN 50K-100K.</p>
+            <button aria-label="Book Washing Machine Service" onclick="bookService('Ids range btw 50k-100k')">Book Now</button>
+        </div>
+        <div class="product">
+            <img src="./normal.jpg" alt="normal services" loading="lazy">
+            <h2>BGMI NORMAL IDS</h2>
+            <p>BEST IDS AVAILABLE RANGE BETWEEN 20K-50K.</p>
+            <button aria-label="Book Car Service" onclick="bookService('Ids range btw 20k-50k')">Book Now</button>
+        </div>
+        <div class="product">
+            <img src="./lowcost.jpg" alt="low services" loading="lazy">
+            <h2>BGMI LOW COST IDS</h2>
+            <p>BEST IDS AVAILABLE RANGE BETWEEN 0-10K.</p>
+            <button aria-label="Book Home Cleaning" onclick="bookService('Ids range btw 0k-10k')">Book Now</button>
+        </div>
+        <div class="product">
+            <img src="./valo.jpg" alt="valo Services" loading="lazy">
+            <h2>VALORANT IDS</h2>
+            <p>BEST VALORANT IDS.</p>
+            <button aria-label="Book Cooking Services" onclick="bookService('Ids')">Book Now</button>
+        </div>
+        <div class="product">
+            <img src="./vvip.png" alt="vvip Services" loading="lazy">
+            <h2>VVIP IDS</h2>
+            <p>BEST IDS AVAILABLE RANGE BETWEEN 300K ABOVE.</p>
+            <button aria-label="Book Bike Services" onclick="bookService('Ids range from 300k')">Book Now</button>
+        </div>
+        
+        <!-- Horizontal Line -->
+        <hr>
+
+    </main>
+    
+    <!-- Customer Reviews Section -->
+    <div class="reviews-container" id="reviews">
+        <h2 class="reviews-header">Customer Reviews</h2>
+        <div class="review">
+            <img src="images/customer1.webp" alt="Customer 1">
+            <p>"Great service! Highly recommended!"</p>
+        </div>
+        <div class="review">
+            <img src="images/customer2.webp" alt="Customer 2">
+            <p>"Professional and efficient. Will use again!"</p>
+        </div>
+        <div class="review">
+            <img src="images/customer3.webp" alt="Customer 3">
+            <p>"Fantastic experience from start to finish!"</p>
+        </div>
+        <div class="review">
+            <img src="images/customer4.webp" alt="Customer 4">
+            <p>"Very satisfied with the quality of work!"</p>
+        </div>
+        <div class="review">
+            <img src="images/customer5.webp" alt="Customer 5">
+            <p>"Friendly staff and great results!"</p>
+        </div>
+        <div class="review">
+            <img src="images/customer6.webp" alt="Customer 6">
+            <p>"I will definitely recommend Swarg Store!"</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 SWARG STORE. All Rights Reserved to SWARG.</p>
+    </footer>
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex - 1].style.display = "block";  
+            setTimeout(showSlides, 5000); // Change image every 5 seconds
+        }
+
+        function changeSlide(n) {
+            slideIndex += n;
+            let slides = document.getElementsByClassName("slide");
+            if (slideIndex > slides.length) {slideIndex = 1}
+            if (slideIndex < 1) {slideIndex = slides.length}
+            showSlidesManually();
+        }
+
+        function showSlidesManually() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slides[slideIndex - 1].style.display = "block";  
+        }
+
+        function bookService(service) {
+            alert(`Booking ${service}...`);
+            // Add your logic here
+        }
+
+        function toggleNav() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active'); // Toggle the active class
+        }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+              .then(function(registration) {
+                console.log('Service Worker registered with scope:', registration.scope);
+              })
+              .catch(function(error) {
+                console.log('Service Worker registration failed:', error);
+              });
+          }
+    </script>
+</body>
+</html>

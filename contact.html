@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - GO Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('images/contact.webp'); /* Background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the image */
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            background-color: rgba(17, 44, 74, 0.9);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+        nav:hover {
+            background-color: rgba(17, 44, 74, 1);
+        }
+        nav h1 {
+            color: #fff;
+            margin: 0;
+            font-size: 1.5em;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        nav img {
+            width: 40px;
+            height: 25px;
+            margin-right: 10px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        nav a:hover {
+            color: #FFD700;
+        }
+        .hamburger {
+            display: none; /* Hidden by default */
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-left: auto; /* Align to the right */
+        }
+        .nav-links {
+            display: flex; /* Default display for larger screens */
+        }
+        .nav-links a {
+            display: block; /* Make links block elements for mobile */
+        }
+        main {
+            display: flex; /* Enable flexbox */
+            flex-direction: column; /* Stack children vertically */
+            justify-content: center; /* Center vertically */
+            align-items: center; /* Center horizontally */
+            height: 100vh; /* Full viewport height */
+            padding: 2em;
+            margin-top: -50px; /* Move the form box upwards */
+            text-align: center;
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-bottom: 2em;
+            color: #020508;
+            font-size: 2em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            max-width: 600px;
+            width: 100%; /* Make form responsive */
+            padding: 2em;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for the form */
+        }
+        form:hover {
+            transform: scale(1.02);
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #4A90E2;
+            outline: none;
+        }
+        button {
+            cursor: pointer;
+            background-color: #4A90E2;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease-in-out, transform 0.2s;
+        }
+        button:hover {
+            background-color: #357ABD;
+            transform: translateY(-2px);
+        }
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer p {
+            margin: 0;
+            color: whitesmoke;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+        @media (max-width: 600px) {
+            nav h1 {
+                font-size: 1.2em;
+            }
+            button {
+                width: 100%;
+            }
+            .nav-links {
+                display: none; /* Hide links by default on mobile */
+                flex-direction: column; /* Stack links vertically */
+                position: absolute; /* Position them absolutely */
+                top: 60px; /* Adjust based on your nav height */
+                left: 0;
+                right: 0;
+                background-color: rgba(17, 44, 74, 0.9); /* Match nav background */
+                z-index: 1000;
+            }
+            .nav-links.active {
+                display: flex; /* Show links when active */
+            }
+            .hamburger {
+                display: block; /* Show hamburger icon on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1><img src="images/logo1.webp" alt="Logo1"><a href="index.html">GO SERVICES</a></h1>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle navigation" onclick="toggleNav()">
+            &#9776; <!-- Hamburger icon -->
+        </button>
+    </nav>
+
+    <main>
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <div class="error" id="nameError"></div>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <div class="error" id="emailError"></div>
+
+            <label for="service">Select Service:</label>
+            <select id="service" name="service" required>
+                <option value="" disabled selected>Select a service</option>
+                <option value="consultation">Air Conditioning Service</option>
+                <option value="installation">Washing Machine Service</option>
+                <option value="maintenance">Car Service</option>
+                <option value="support">Home Cleaning</option>
+                <option value="support">Cooking Service</option>
+                <option value="support">Bike Service</option>
+            </select>
+            <div class="error" id="serviceError"></div>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+            <div class="error" id="messageError"></div>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 GO Services. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active'); // Toggle the active class
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var service = document.getElementById('service').value;
+            var message = document.getElementById('message').value;
+            var nameError = document.getElementById('nameError');
+            var emailError = document.getElementById('emailError');
+            var serviceError = document.getElementById('serviceError');
+            var messageError = document.getElementById('messageError');
+
+            // Clear previous error messages
+            nameError.textContent = '';
+            emailError.textContent = '';
+            serviceError.textContent = '';
+            messageError.textContent = '';
+
+            let valid = true;
+
+            if (name === '') {
+                nameError.textContent = 'Please enter your name';
+                valid = false;
+            }
+
+            if (email === '') {
+                emailError.textContent = 'Please enter your email';
+                valid = false;
+            }
+
+            if (service === '') {
+                serviceError.textContent = 'Please select a service';
+                valid = false;
+            }
+
+            if (message === '') {
+                messageError.textContent = 'Please enter your message';
+                valid = false;
+            }
+
+            if (valid) {
+                alert('Thank you for your message! We will get back to you shortly.');
+                this.reset(); // Reset the form fields
+            }
+        });
+    </script>
+</body>
+</html>
